@@ -2,7 +2,7 @@
 (function ($) {
 
     /* SlideDown */
-    $.fn.slideDown = function (duration) {    
+    $.fn.slideDown = function (duration,cb) {    
     
         // get the element position to restore it then
         var position = this.css('position');
@@ -44,10 +44,12 @@
             paddingBottom: paddingBottom
         }, duration);
         
+        cb();
+        
     };
 
     /* SlideUp */
-    $.fn.slideUp = function (duration) {
+    $.fn.slideUp = function (duration,cb) {
     
         // active the function only if the element is visible
         if (this.height() > 0) {
@@ -101,18 +103,19 @@
             }
             });
         }
+        cb();
     };
     
     /* SlideToggle */
-    $.fn.slideToggle = function (duration) {
+    $.fn.slideToggle = function (duration,cb) {
     
         // if the element is hidden, slideDown !
         if (this.height() == 0) {
-            this.slideDown();
+            this.slideDown(1000,cb);
         } 
         // if the element is visible, slideUp !
         else {
-            this.slideUp();
+            this.slideUp(1000,cb);
         }
     };
 
