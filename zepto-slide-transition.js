@@ -42,9 +42,12 @@
             marginBottom: marginBottom,
             paddingTop: paddingTop,
             paddingBottom: paddingBottom
-        }, duration);
+        },{
+            complete: function(){cb();},
+        	duration: duration
+        });
         
-        cb();
+        
         
     };
 
@@ -91,6 +94,7 @@
                 queue: false,
                 complete: function(){
                     target.hide();
+                    cb();
                     target.css({
                     visibility: 'visible',
                     overflow: 'hidden',
@@ -98,12 +102,12 @@
                     marginTop: marginTop,
                     marginBottom: marginBottom,
                     paddingTop: paddingTop,
-                    paddingBottom: paddingBottom
+                    paddingBottom: paddingBottom,
                 });
             }
             });
         }
-        cb();
+        
     };
     
     /* SlideToggle */
